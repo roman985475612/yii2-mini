@@ -4,6 +4,7 @@ use app\assets\AppAsset;
 use app\models\Category;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\Breadcrumbs;
 
 $categories = Category::find()->all();
 
@@ -21,8 +22,11 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="<?= Html::encode($this->context->keywords) ?>">
     <meta name="description" content="<?= Html::encode($this->context->description) ?>">
+    
     <?php $this->registerCsrfMetaTags() ?>
+    
     <title><?= Html::encode($this->context->title) ?></title>
+    
     <?php $this->head() ?>
   </head>
   <body>
