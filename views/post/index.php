@@ -9,13 +9,13 @@ use yii\widgets\LinkPager;
 <div class="row">
   <div class="col-12">
     <div class="bg-light mt-3 p-5 text-center">
-      <h1 class="display-4">Hello, Yii2!</h1>
+      <h1 class="display-3">Hello, Yii2!</h1>
       <p class="lead">This is app on framework Yii2</p>
     </div>
   </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
   <?php foreach($posts as $post): ?>
     <div class="col">
       <div class="card h-100">

@@ -20,7 +20,7 @@ class PostController extends Controller
         $query = Post::find()->with('category');
         
         $pages = new Pagination([
-            'defaultPageSize' => 4,
+            'defaultPageSize' => 3,
             'forcePageParam' => false,
             'pageSizeParam' => false,
             'totalCount' => $query->count(), 
@@ -60,7 +60,7 @@ class PostController extends Controller
         $query = Post::find()->where(['category_id' => $category->id]);
         
         $pages = new Pagination([
-            'defaultPageSize' => 4,
+            'defaultPageSize' => 3,
             'forcePageParam' => false,
             'pageSizeParam' => false,
             'totalCount' => $query->count(), 
