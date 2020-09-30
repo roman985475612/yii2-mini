@@ -5,9 +5,8 @@ namespace app\controllers;
 use app\models\Post;
 use app\models\Category;
 use yii\data\Pagination;
-use yii\web\Controller;
 
-class PostController extends Controller
+class PostController extends AppController
 {
     public $title;
     public $keywords;
@@ -30,9 +29,7 @@ class PostController extends Controller
             ->limit($pages->limit)
             ->all();
 
-        $this->title = 'Yii2 App mini';
-        $this->keywords = 'App';
-        $this->description = 'This is my app';
+        $this->setMeta('My Blog', 'keys1', 'Description site');
             
         return $this->render('index', [
             'pages' => $pages,
@@ -44,9 +41,7 @@ class PostController extends Controller
     {
         $post = Post::findOne($id);
 
-        $this->title = $post->title;
-        $this->keywords = $post->keywords;
-        $this->description = $post->description;
+        $this->setMeta($post->title, $post->keywords, $post->description);
 
         return $this->render('view', [
             'post' => $post
@@ -69,10 +64,8 @@ class PostController extends Controller
         $posts = $query->offset($pages->offset)
             ->limit($pages->limit)
             ->all();
-            
-        $this->title = $category->title;
-        $this->keywords = $category->title;
-        $this->description = 'This is my app';
+        
+        $this->setMeta($category->title, 'keys3', 'Description site3');
         
         return $this->render('index', [
             'pages' => $pages,
