@@ -65,7 +65,7 @@ class PostController extends AppController
             ->limit($pages->limit)
             ->all();
         
-        $this->setMeta($category->title, 'keys3', 'Description site3');
+        $this->setMeta($category->title, $category->keywords, $category->description);
         
         return $this->render('index', [
             'pages' => $pages,

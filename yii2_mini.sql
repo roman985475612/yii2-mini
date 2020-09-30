@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 22 2020 г., 17:05
+-- Время создания: Сен 30 2020 г., 11:20
 -- Версия сервера: 10.4.14-MariaDB
 -- Версия PHP: 7.4.10
 
@@ -30,18 +30,20 @@ SET time_zone = "+00:00";
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `alias` varchar(255) DEFAULT NULL
+  `alias` varchar(255) DEFAULT NULL,
+  `keywords` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `categories`
 --
 
-INSERT INTO `categories` (`id`, `title`, `alias`) VALUES
-(1, 'Lifestyle', 'lifestyle'),
-(2, 'Food', 'food'),
-(3, 'Nature', 'nature'),
-(4, 'Photography', 'photography');
+INSERT INTO `categories` (`id`, `title`, `alias`, `keywords`, `description`) VALUES
+(1, 'Lifestyle', 'lifestyle', 'lifestyle', 'lifestyle'),
+(2, 'Food', 'food', 'food', 'food'),
+(3, 'Nature', 'nature', 'nature', 'nature'),
+(4, 'Photography', 'photography', 'photography', 'photography');
 
 -- --------------------------------------------------------
 
@@ -75,6 +77,19 @@ INSERT INTO `posts` (`id`, `category_id`, `title`, `exerpt`, `content`, `img`, `
 (7, 4, 'Post 7', 'In neque est, dignissim et nisl ut, congue congue urna. Integer euismod magna elementum eros lobortis vehicula. Pellentesque sit amet ornare ex, sit amet luctus lorem. Nulla facilisi. Ut risus purus, dictum vitae tincidunt tristique, lacinia sed mauris. A', 'Morbi ac nisi a dolor auctor pulvinar. Donec id purus at ligula placerat gravida. Nunc sed nunc eu metus tristique venenatis id sed enim. Donec gravida rhoncus vestibulum. Vivamus aliquet, tortor quis feugiat hendrerit, diam dolor egestas ipsum, non dapibus massa dui fermentum sem. Nam sit amet turpis nec eros lobortis feugiat ac id mauris. In sed convallis felis. Duis ut sagittis dolor. Sed laoreet leo eu rutrum venenatis. Phasellus hendrerit, erat et dignissim ultrices, massa mauris suscipit arcu, a consectetur nibh libero elementum neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla laoreet blandit ipsum, eu pulvinar nulla pellentesque nec. Pellentesque blandit massa lacus, at pretium mauris vulputate in. ', 'img/img-7.jpg', '2020-09-22 12:22:31', 'lorem ipsum', 'Morbi ac nisi a dolor auctor pulvinar'),
 (8, 2, 'Post 8', 'In neque est, dignissim et nisl ut, congue congue urna. Integer euismod magna elementum eros lobortis vehicula. Pellentesque sit amet ornare ex, sit amet luctus lorem. Nulla facilisi. Ut risus purus, dictum vitae tincidunt tristique, lacinia sed mauris. A', 'Morbi ac nisi a dolor auctor pulvinar. Donec id purus at ligula placerat gravida. Nunc sed nunc eu metus tristique venenatis id sed enim. Donec gravida rhoncus vestibulum. Vivamus aliquet, tortor quis feugiat hendrerit, diam dolor egestas ipsum, non dapibus massa dui fermentum sem. Nam sit amet turpis nec eros lobortis feugiat ac id mauris. In sed convallis felis. Duis ut sagittis dolor. Sed laoreet leo eu rutrum venenatis. Phasellus hendrerit, erat et dignissim ultrices, massa mauris suscipit arcu, a consectetur nibh libero elementum neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla laoreet blandit ipsum, eu pulvinar nulla pellentesque nec. Pellentesque blandit massa lacus, at pretium mauris vulputate in. ', 'img/img-8.jpg', '2020-09-22 12:22:30', 'lorem ipsum', 'Morbi ac nisi a dolor auctor pulvinar');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL DEFAULT 'user'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -93,6 +108,12 @@ ALTER TABLE `posts`
   ADD KEY `fk_category` (`category_id`);
 
 --
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -107,6 +128,12 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
