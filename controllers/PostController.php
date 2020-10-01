@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Post;
 use app\models\Category;
 use yii\data\Pagination;
+use yii\web\HttpException;
 
 class PostController extends AppController
 {
@@ -16,7 +17,9 @@ class PostController extends AppController
     {        
         $params['menu'] = Category::find()->all();
 
-        $query = Post::find()->with('category');
+        $query = Post::find()
+            ->select(['id', 'title', 'exerpt', 'created_at', 'category_id', 'img'])
+            ->with('category');
         
         $pages = new Pagination([
             'defaultPageSize' => 3,
@@ -41,6 +44,10 @@ class PostController extends AppController
     {
         $post = Post::findOne($id);
 
+        if (empty($post)) {
+            throw new HttpException(404, 'Page not found');
+        }
+
         $this->setMeta($post->title, $post->keywords, $post->description);
 
         return $this->render('view', [
@@ -51,8 +58,14 @@ class PostController extends AppController
     public function actionCategory($alias)
     {
         $category = Category::findOne(['alias' => $alias]);
+
+        if (empty($category)) {
+            throw new HttpException(404, 'Page not found');
+        }
         
-        $query = Post::find()->where(['category_id' => $category->id]);
+        $query = Post::find()
+            ->select(['id', 'title', 'exerpt', 'created_at', 'category_id', 'img'])
+            ->where(['category_id' => $category->id]);
         
         $pages = new Pagination([
             'defaultPageSize' => 3,
