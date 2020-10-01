@@ -20,7 +20,12 @@ use yii\widgets\LinkPager;
     <div class="col">
       <div class="card h-100">
         <?= Html::img("@web/$post->img", ['class' => 'card-img-top', 'alt' => $post->title]) ?>
-        <div class="card-header">Category: <?= $post->category->title ?></div>
+        <div class="card-header">
+          Category: 
+          <a href="<?= Url::to(['post/category', 'alias' => $post->category->alias]) ?>">
+            <?= $post->category->title ?>
+          </a>
+        </div>
         <div class="card-body">
           <h3 class="card-title"><?= $post->title ?></h3>
           <p class="card-text"><?= $post->exerpt ?></p>

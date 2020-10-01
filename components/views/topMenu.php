@@ -1,10 +1,5 @@
 <?php
-
 use yii\helpers\Url;
-use app\models\Category;
-
-$categories = Category::find()->all();
-
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -17,9 +12,9 @@ $categories = Category::find()->all();
                 <li class="nav-item">
                     <a class="nav-link px-5" href="<?= Url::to('/')?>">HOME</a>
                 </li>
-                <?php foreach($categories as $category): ?>
+                <?php foreach($cats as $cat): ?>
                     <li class="nav-item px-5">
-                        <a class="nav-link" href="<?= Url::to(['post/category', 'alias' => $category->alias])?>"><?= strtoupper($category->title) ?></a>
+                        <a class="nav-link" href="<?= Url::to(['post/category', 'alias' => $cat['alias']])?>"><?= strtoupper($cat['title']) ?></a>
                     </li>
                 <?php endforeach ?>
             </ul>

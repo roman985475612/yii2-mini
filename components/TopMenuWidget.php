@@ -5,12 +5,12 @@ namespace app\components;
 use app\models\Category;
 use yii\base\Widget;
 
-class CatsWidget extends Widget
+class TopMenuWidget extends Widget
 {
     public function run()
     {
-        $html = \Yii::$app->cache->get('catsMenu');
-        
+        $html = \Yii::$app->cache->get('topMenu');
+
         if (!$html) {
             $cats = Category::find()
                 ->select(['alias', 'title'])
@@ -18,9 +18,9 @@ class CatsWidget extends Widget
                 ->orderBy('title')
                 ->all();
 
-            $html = $this->render('cats', ['cats' => $cats]);
+            $html = $this->render('topMenu', ['cats' => $cats]);
 
-            \Yii::$app->cache->set('catsMenu', $html, 60);
+            \Yii::$app->cache->set('topMenu', $html, 60);
         }
 
         return $html;

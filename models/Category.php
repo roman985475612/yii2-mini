@@ -10,4 +10,9 @@ class Category extends ActiveRecord
     {
         return 'categories';
     }
+
+    public function getPosts()
+    {
+        return $this->hasMany(Post::class, ['category_id' => 'id']);
+    }
 }
