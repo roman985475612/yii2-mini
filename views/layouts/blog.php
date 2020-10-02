@@ -29,7 +29,7 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
     <div class="container">
         <header>
-          <?= \app\components\TopMenuWidget::widget() ?>
+          <?= $this->render('_navbar') ?>
         </header>
 
         <main>
